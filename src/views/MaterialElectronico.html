@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>SWPECYMDTDDRYPDRELCDT</title>
+		<link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+		<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+		<style>
+		</style>
+</head>
+<body>
+	<section class="hero is-fullheight is-default is-bold">
+	  <div class="hero-head" style="background: url(http://www.clker.com/cliparts/f/b/e/f/14161343851614494677abstract%20mixture%20of%20blue%20and%20green%20wallpaper.jpg);">
+	      <nav class="navbar is-primary"> <!--Navegador cabecera-->
+          <div class="container">
+              <div class="navbar-brand"><!--Parte derecha del navbar-->
+                  <a class="navbar-item" href="../"><!--Logo que estará en la derecha-->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Trash_Can_23.svg/758px-Trash_Can_23.svg.png" alt="Logo">
+                  </a>
+                  <span class="navbar-burger burger" data-target="navbarMenu"><!--Ícono desplegable con el contenido de navbarMenu-->
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  </span>
+              </div>
+              <div id="navbarMenu" class="navbar-menu"><!--Parte principal del navbar-->
+                  <div class="navbar-end is-hidden-touch"><!--Parte final del navbar-->
+															<a class="navbar-item is-active ">Mapa</a><!--Pestaña actual, por así decirlo-->
+                              <a class="navbar-item " href="Materiales.html">Reciclaje</a>
+                              <a class="navbar-item " href="Reclamos.html">Reclamos</a>
+															<a class="navbar-item " href="Estadisticas.html">Estadisticas</a>
+															<a class="navbar-item " href="QR.html">QR</a>
+															<a class="navbar-item " href="Iniciar_Sesion.html">Iniciar sesion</a>
+                  </div>
+									<div class="navbar-end is-hidden-desktop has-background-grey-darker">
+									<nav class="level has-background-grey-darker">
+									<div class="level-item has-text-centered">
+									<figure class=" image is-128x128 is-hidden-desktop"><img class="is-rounded" src="https://pm1.narvii.com/6640/b0dc8c743f5f28929dd805f295159ef2210041cc_128.jpg" alt="Usuario p"></figure></div></nav>
+									<a class="navbar-item is-active button is-dark has-text-left">Mapa</a><!--Pestaña actual, por así decirlo-->
+									<a class="navbar-item button is-dark has-text-left" href="Materiales.html">Reciclaje</a>
+									<a class="navbar-item button is-dark has-text-left" href="Reclamos.html">Reclamos</a>
+									<a class="navbar-item button is-dark has-text-left" href="Estadisticas.html">Estadisticas</a>
+									<a class="navbar-item button is-dark has-text-left" href="QR.html">QR</a>
+									<a class="navbar-item button is-dark has-text-left" href="Iniciar_Sesion.html">Iniciar sesion</a>
+								</div>
+              </div>
+          </div>
+      </nav>
+  </div>
+<div class="hero-body" style="align-items: flex-start;"><!--Cuerpo-->
+  <div class="container has-text-centered">
+    <div class="columns is-vcentered" style="margin-top: 4rem;">
+      <div class="column is-4 is-offset-1 is-hidden-mobile">
+        <span class="icon is-large">
+          <i class="fas fa-code-branch fa-7x"></i>
+        </span>
+      </div>
+      <div class="column is-4 is-offset-1 is-hidden-tablet">
+        <span class="icon is-large">
+          <i class="fas fa-code-branch fa-5x"></i>
+        </span>
+      </div>
+      <div class="column is-5 is-offset-1">
+        <h1 class="title is-1 is-hidden-mobile" style="font-size: 70px;">
+          Electrónicos
+        </h1>
+        <h1 class="title is-1 is-hidden-tablet" style="font-size: 40px;">
+          Electrónicos
+        </h1>
+      </div>
+    </div>
+    <div class="columns is-vcentered" style="margin-top: 2rem;">
+      <div class="column is-4 is-offset-1">
+        <div class="box has-text-justified">
+          <p>
+          Los aparatos eléctricos contienen sustancias como bromo, cadmio,
+					fósforo o mercurio que pueden ser muy dañinos para la salud y el medio ambiente.
+					Su correcto tratamiento permite además recuperar metales, plástico y vidrio
+					para su reciclaje. Actualmente, en la mayoría de los hogares hay un gran número
+					de estos aparatos  y cuando dejan de ser útiles, porque se estropean o se
+					cambian por modelos nuevos, se debe asegurar que su tratamiento como residuo
+					sea el más respetuoso con el medio ambiente.
+          </p>
+      </div>
+    </div>
+      <div class="column is-5 is-offset-1">
+        <div id="map" style="height:300px; width:100%;"></div>
+        <script>
+          var map;
+          function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: {lat: -8.106591, lng: -79.032068},
+              zoom: 14
+            });
+            var puntos = [
+              {
+                position: new google.maps.LatLng(-8.126591, -79.032068),
+              }
+            ];
+            puntos.forEach(function(punto) {
+              var marker = new google.maps.Marker({
+                position: punto.position,
+                map: map
+              });
+            });
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWgEjuWSwFWMyx7qmvn07feSZeQngHd4E&callback=initMap"
+async defer></script>
+<script src="js/bulma.js">
+</script>
+</body>
+</html>
