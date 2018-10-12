@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,8 +8,20 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
 		<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="CSS/login.css">
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<!-- jsdelivr cdn -->
+		<script src="https://cdn.jsdelivr.net/npm/vee-validate@latest/dist/vee-validate.js"></script>
+		<!-- unpkg -->
+		<script src="https://unpkg.com/vee-validate@latest"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-i18n/8.1.1/vue-i18n.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../public/CSS/login.css">
 		<style>
+		.danger-message {
+			color: red;
+			}
+			.danger {
+				border: 1px solid red;
+			}
 		</style>
 </head>
 <body>
@@ -52,24 +64,37 @@
       </nav>
   </div>
 <div class="hero-body" ><!--Cuerpo-->
-  <div class="container has-text-centered">
-                <div class="column is-4 is-offset-4">
+	<div class="container has-text-centered">
+                <div class="column is-4 is-offset-4" id="app">
                     <h3 class="title has-text-grey">Inicia Sesión</h3>
                     <p class="subtitle has-text-grey">Para seguir inicie sesión</p>
-                    <div class="box">
+                    <div class="box" >
                         <figure class="avatar">
                             <img src="https://avatarfiles.alphacoders.com/564/56421.jpg">
                         </figure>
-                        <form>
+                        <form @submit.prevent="validateBeforeForm">
                             <div class="field">
                                 <div class="control ">
-                                    <input class="input is-large" type="email" placeholder="Email" autofocus="">
+                                    <input v-model="email"
+        															name="email"
+        															placeholder="Email"
+        															v-validate="'required|email'"
+        															:class="{'danger': errors.has('email')}"
+																			class="input is-large" type="email"
+																			placeholder="Email" autofocus="">
                                 </div>
-                            </div>
+																<div v-show="errors.has('email')" class="danger-message">{{ errors.first('email') }}</div>
+      													</div>
+
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="password" placeholder="Contraseña">
+                                    <input v-model="password"
+          																 name="password"class="input is-large"
+																					 type="password" placeholder="Contraseña"
+																					 v-validate="'required'"
+          											 					:class="{'danger': errors.has('password')}">
                                 </div>
+																<div v-show="errors.has('password')" class="danger-message">{{ errors.first('password') }}</div>
                             </div>
                             <div class="field">
                                 <label class="checkbox">
@@ -77,9 +102,9 @@
                   Recordarme
                 </label>
                             </div>
-                            <button class="button is-block is-info is-large is-fullwidth">Iniciar</button>
+                            <button class="button is-block is-info is-large is-fullwidth btn">Iniciar</button>
                         </form>
-                    </div>
+                    </div></div>
                     <p class="has-text-grey">
                         <a href="../">Registrarse</a> &nbsp;·&nbsp;
                         <a href="../">Olvido Contraseña</a> &nbsp;·&nbsp;
@@ -87,9 +112,38 @@
                     </p>
                 </div>
 </div>
-</div>
 </section>
-<script src="/js/bulma.js">
+<script src="../public/js/bulma.js">
+</script>
+<script>
+
+const dict = {
+  custom: {
+    email: {
+      required: 'Este campo es necesario',
+			email: 'Ingrese un email válido'
+    },
+    password: {
+      required: () => 'Este campo es necesario'
+    }
+  }
+};
+	Vue.use(VeeValidate);
+	VeeValidate.Validator.localize('en', dict);
+	new Vue({
+		el: "#app",
+		data:
+			{
+				email: "",
+    		password: "",
+			},
+		methods: {
+			validateBeforeForm: function() {
+			this.$validator.localize('en', dict);
+			this.$validator.validateAll();
+		}}
+
+	});
 </script>
 </body>
 </html>
