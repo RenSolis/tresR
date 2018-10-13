@@ -10,6 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "ejs-mate": "^2.3.0",
+    "express": "^4.16.3",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "reniec-sunat-js": "^1.0.0",
+    "sqlite3": "^4.0.2"
   }
 }

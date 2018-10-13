@@ -7,9 +7,8 @@
 		<link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
 		<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="CSS/login.css">
 		<style>
+
 		</style>
 </head>
 <body>
@@ -29,66 +28,89 @@
               </div>
               <div id="navbarMenu" class="navbar-menu"><!--Parte principal del navbar-->
                   <div class="navbar-end is-hidden-touch"><!--Parte final del navbar-->
-															<a class="navbar-item ">Mapa</a><!--Pestaña actual, por así decirlo-->
+															<a class="navbar-item is-active ">Mapa</a><!--Pestaña actual, por así decirlo-->
                               <a class="navbar-item " href="materials">Reciclaje</a>
                               <a class="navbar-item " href="claims">Reclamos</a>
 															<a class="navbar-item " href="statistics">Estadisticas</a>
 															<a class="navbar-item " href="qr">QR</a>
-															<a class="navbar-item is-active" href="login">Iniciar sesión</a>
+															<a class="navbar-item " href="login">Iniciar sesion</a>
                   </div>
 									<div class="navbar-end is-hidden-desktop has-background-grey-darker">
 									<nav class="level has-background-grey-darker">
 									<div class="level-item has-text-centered">
 									<figure class=" image is-128x128 is-hidden-desktop"><img class="is-rounded" src="https://pm1.narvii.com/6640/b0dc8c743f5f28929dd805f295159ef2210041cc_128.jpg" alt="Usuario p"></figure></div></nav>
-									<a class="navbar-item button is-dark has-text-left">Mapa</a><!--Pestaña actual, por así decirlo-->
+									<a class="navbar-item is-active button is-dark has-text-left">Mapa</a><!--Pestaña actual, por así decirlo-->
 									<a class="navbar-item button is-dark has-text-left" href="materials">Reciclaje</a>
 									<a class="navbar-item button is-dark has-text-left" href="claims">Reclamos</a>
 									<a class="navbar-item button is-dark has-text-left" href="statistics">Estadisticas</a>
 									<a class="navbar-item button is-dark has-text-left" href="qr">QR</a>
-									<a class="navbar-item button is-dark has-text-left is-active" href="login">Iniciar sesión</a>
+									<a class="navbar-item button is-dark has-text-left" href="login">Iniciar sesion</a>
 								</div>
               </div>
           </div>
       </nav>
   </div>
-<div class="hero-body" ><!--Cuerpo-->
-  <div class="container has-text-centered">
-                <div class="column is-4 is-offset-4">
-                    <h3 class="title has-text-grey">Inicia Sesión</h3>
-                    <p class="subtitle has-text-grey">Para seguir inicie sesión</p>
-                    <div class="box">
-                        <figure class="avatar">
-                            <img src="https://avatarfiles.alphacoders.com/564/56421.jpg">
-                        </figure>
-                        <form>
-                            <div class="field">
-                                <div class="control ">
-                                    <input class="input is-large" type="email" placeholder="Email" autofocus="">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <input class="input is-large" type="password" placeholder="Contraseña">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label class="checkbox">
-                  <input type="checkbox">
-                  Recordarme
-                </label>
-                            </div>
-                            <button class="button is-block is-info is-large is-fullwidth">Iniciar</button>
-                        </form>
-                    </div>
-                    <p class="has-text-grey">
-                        <a href="../">Registrarse</a> &nbsp;·&nbsp;
-                        <a href="../">Olvido Contraseña</a> &nbsp;·&nbsp;
-                        <a href="../">Ayuda</a>
-                    </p>
-                </div>
-</div>
-</div>
-</section>
+<div class="hero-body" style="align-items: flex-start; justify-content: center;"><!--Cuerpo-->
+    <div class="container has-text-centered is-size-5">
+      <p>Por favor elegir la clase de material que desea reciclar</p>
+      <br />
+      <div class="columns is-multiline"><!--Columnas responsives-->
+
+          <div class="column is-half">
+						<a href="/materials/paper">
+						<div class="notification is-link has-text-centered" href="/materials/paper">
+            	<span class"icon">
+              	<i class="far fa-clone is-size-2"></i>
+            	</span>
+            		<p>Papel</p>
+						</div>
+						</a>
+          </div>
+          <div class="column is-half">
+						<a href="/materials/plastic">
+						<div class="notification is-danger has-text-centered" href="/materials/plastic">
+            	<span class"icon">
+              	<i class="fab fa-gulp is-size-2"></i>
+								<!--i class="fas fa-cannabis"></i>-->
+            	</span>
+            		<p>Plástico</p>
+          	</div>
+						</a>
+					</div>
+          <div class="column is-half">
+						<a href="/materials/paperboard">
+						<div class="notification is-info has-text-centered" href="/materials/paperboard">
+            	<span class"icon">
+              	<i class="fas fa-box is-size-2"></i>
+            	</span>
+            		<p>Cartón</p>
+          	</div>
+						</a>
+					</div>
+          <div class="column is-half">
+						<a href="/materials/glass">
+						<div class="notification is-warning has-text-centered" href="/materials/glass">
+            	<span class"icon">
+              	<i class="fas fa-glass-martini is-size-2"></i>
+            	</span>
+								<p>Vidrio</p>
+          	</div>
+						</a>
+					</div>
+          <div class="column is-half is-offset-one-quarter">
+						<a href="/materials/electronic">
+						<div class="notification is-primary has-text-centered" href="/materials/electronic">
+            	<span class"icon">
+              	<i class="fas fa-code-branch is-size-2"></i>
+            	</span>
+            		<p>Electrónicos</p>
+          	</div>
+						</a>
+					</div>
+				<br />
+      </div>
+		</div>
+  </div><!--Fin del cuerpo-->
 <script src="/js/bulma.js">
 </script>
 </body>
