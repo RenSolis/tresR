@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const router = express.Router();
 
-function route(route) {
+function route(route) { 
   return path.join(__dirname, route);
 }
 
@@ -44,10 +44,6 @@ router.get('/statistics', (req, res) => {
 
 router.get('/qr', (req, res) => {
     res.sendFile(route('../views/QR.html'));
-});
-
-router.get('/signup', (req, res) => {
-    res.sendFile(route('../views/Registro.html'));
 });
 
 router.get('/claims', (req, res) => {
