@@ -8,6 +8,12 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
 		<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<!-- jsdelivr cdn -->
+		<script src="https://cdn.jsdelivr.net/npm/vee-validate@latest/dist/vee-validate.js"></script>
+		<!-- unpkg -->
+		<script src="https://unpkg.com/vee-validate@latest"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-i18n/8.1.1/vue-i18n.min.js"></script>
 		<style>
     .hero-body {
       font-family: 'Open Sans', serif;
@@ -20,6 +26,12 @@
     p.subtitle {
       padding-top: 1rem;
     }
+		.danger-message {
+			color: red;
+			}
+			.danger {
+				border: 1px solid red;
+			}
 		</style>
 </head>
 <body>
@@ -66,8 +78,8 @@
                 <div class="column is-8 is-offset-2">
                     <h3 class="title has-text-grey">Registro</h3>
                     <p class="subtitle has-text-grey">Únase al cambio</p>
-                    <div class="box" style="background-color:hsl(0, 0%, 90%);">
-                        <form>
+                    <div  id="app" class="box" style="background-color:hsl(0, 0%, 90%);">
+                        <form @submit.prevent="validateBeforeForm">
                           <div class="field is-horizontal">
                             <div class="field-label">
                                 <label class="label has-text-left is-size-6">DNI:</label>
@@ -75,11 +87,16 @@
                             <div class="field-body">
                               <div class="field">
                               <div class="control has-icons-left">
-                                  <input class="input" type="text" placeholder="" autofocus="" />
+                                  <input name="id" class="input" v-model="id"
+																	type="text" placeholder="" v-validate="'required|digits:8'"
+																	:class="{'danger': errors.has('id')}"
+																	class="input is-large"
+																	autofocus="" />
                                   <span class="icon is-small is-left">
                                     <i class="fas fa-address-card"></i>
                                   </span>
                               </div>
+															<div v-show="errors.has('id')" class="danger-message">{{ errors.first('id') }}</div>
                             </div>
                             </div>
                           </div>
@@ -90,11 +107,17 @@
                             <div class="field-body">
                               <div class="field">
                                   <div class="control has-icons-left">
-                                      <input class="input" type="email" placeholder="" />
+                                      <input class="input"
+																			v-model="email"
+	        														name="email"
+																			v-validate="'required|email'"
+        															:class="{'danger': errors.has('email')}"
+																			type="email" placeholder="" />
                                       <span class="icon is-small is-left">
                                         <i class="fas fa-at"></i>
                                       </span>
                                   </div>
+																	<div v-show="errors.has('email')" class="danger-message">{{ errors.first('email') }}</div>
                               </div>
                             </div>
                           </div>
@@ -105,11 +128,16 @@
                             <div class="field-body">
                               <div class="field">
                                   <div class="control has-icons-left">
-                                      <input class="input" type="text" placeholder="" />
+                                      <input class="input"
+																			v-model="phone" name="phone"
+																			v-validate="'required|numeric'"
+																			:class="{'danger': errors.has('phone')}"
+																			type="text" placeholder="" />
                                       <span class="icon is-small is-left">
                                         <i class="fas fa-mobile-alt"></i>
                                       </span>
                                   </div>
+																	<div v-show="errors.has('phone')" class="danger-message">{{ errors.first('phone') }}</div>
                               </div>
                             </div>
                           </div>
@@ -120,11 +148,18 @@
                             <div class="field-body">
                               <div class="field">
                                   <div class="control has-icons-left">
-                                      <input class="input" type="password" placeholder="" />
+                                      <input class="input"
+																			v-model="password"
+																			ref="password"
+																			name="password"
+																			v-validate="'required'"
+																		 :class="{'danger': errors.has('password')}"
+																			type="password" placeholder="" />
                                       <span class="icon is-small is-left">
                                         <i class="fas fa-lock"></i>
                                       </span>
                                   </div>
+																	<div v-show="errors.has('password')" class="danger-message">{{ errors.first('password') }}</div>
                               </div>
                             </div>
                           </div>
@@ -135,15 +170,21 @@
                             <div class="field-body">
                               <div class="field">
                                   <div class="control has-icons-left">
-                                      <input class="input" type="password" placeholder="" />
+                                      <input class="input" type="password"
+																			v-validate="'required|confirmed:password'"
+																			name="password_confirmation"
+																			data-vv-as="password"
+																			:class="{'is-danger': errors.has('password_confirmation')}"
+																			placeholder="" />
                                       <span class="icon is-small is-left">
                                         <i class="fas fa-lock"></i>
                                       </span>
                                   </div>
+																	<div v-show="errors.has('password_confirmation')" class="danger-message">{{ errors.first('password_confirmation') }}</div>
                               </div>
                             </div>
                           </div>
-                            <button class="button is-block is-info is-large is-fullwidth">Registrarse</button>
+                            <button class="button is-block is-info is-large is-fullwidth btn">Registrarse</button>
                         </form>
                     </div>
                     <p class="has-text-grey">
@@ -154,7 +195,52 @@
 </div>
 </div>
 </section>
-<script src="/js/bulma.js">
+<script src="../public/js/bulma.js">
+</script>
+<script>
+
+const dict = {
+  custom: {
+    id: {
+      required: 'Este campo es necesario',
+			digits: 'Ingrese DNI válido'
+    },
+		email:{
+			required: 'Este campo es necesario',
+			email: 'Ingrese un email válido'
+		},
+		phone: {
+      required: 'Este campo es necesario',
+			numeric: 'Ingrese teléfono válido'
+    },
+		password:{
+			required: 'Este campo es necesario'
+		},
+		password_confirmation:{
+			required: 'Este campo es necesario',
+			confirmed: 'Lo digitado no coincide'
+		}
+  }
+};
+	Vue.use(VeeValidate);
+	VeeValidate.Validator.localize('en', dict);
+	new Vue({
+		el: "#app",
+		data:
+			{
+				id: "",
+				email: "",
+				phone: "",
+				password: "",
+				password_confirmation: "",
+			},
+		methods: {
+			validateBeforeForm: function() {
+			this.$validator.localize('en', dict);
+			this.$validator.validateAll();
+		}}
+
+	});
 </script>
 </body>
 </html>
