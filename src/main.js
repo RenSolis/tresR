@@ -1,8 +1,9 @@
 // Modules
 import routes from './routes/routes';
 import users from './routes/users';
-import express from 'express';
+import passport from 'passport';
 import database from './database';
+import express from 'express';
 const app = express();
 
 //  Middlewares
