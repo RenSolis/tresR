@@ -3,7 +3,23 @@ import session from "express-session";
 import flash from "connect-flash";
 
 module.exports = app => {
+    // Use sessions middleware
+    app.use(session({
+        secret: 'login',
+        resave: true,
+        saveUninitialized: true
+    }));
+    // Initi errors messages
+    app.use((req, res, next) => {
+        res.locals.errors = null;
+        next();
+    });
+    // For flash messages
     app.use(flash());
+    app.use((req, res, next) => {
+        res.locals.messages = require('express-messages')(req, res);
+        next();
+    });
     // Validate all inputs 
     app.use(expressValidator({
         errorFormatter: (param, msg, value) => {

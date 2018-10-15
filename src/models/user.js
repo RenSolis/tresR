@@ -5,6 +5,15 @@ module.exports = (sequelize, DataType) => {
             primaryKey: true,
             autoIncrement: true
         },
+        dni: {
+            type: DataType.STRING,
+            unique: true,
+            allowNull: false,
+            validate: {
+                notEmpty: true,
+                min: 7
+            }
+        },
         phone: {
             type: DataType.STRING,
             unique: true,

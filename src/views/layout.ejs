@@ -61,6 +61,19 @@
           </div>
       </nav>
   </div>
+  <!-- Section flash messages -->
+    <%- messages('message_template', locals) -%>
+    <% if( errors ) { %>
+        <p class="text-danger">Please fix the following errors.</p>
+        <ul>
+            <% errors.forEach( function( error ) { %>
+                <li class="text-danger">
+                        <%= error.msg %>
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
     <%- body -%>
 </section>
     <script src="/js/bulma.js"></script>
+</body>
