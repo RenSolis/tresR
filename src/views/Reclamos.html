@@ -7,8 +7,19 @@
 		<title>SWPECYMDTDDRYPDRELCDT</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
 		<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<!-- jsdelivr cdn -->
+		<script src="https://cdn.jsdelivr.net/npm/vee-validate@latest/dist/vee-validate.js"></script>
+		<!-- unpkg -->
+		<script src="https://unpkg.com/vee-validate@latest"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-i18n/8.1.1/vue-i18n.min.js"></script>
 		<style>
-
+		.danger-message {
+			color: red;
+			}
+			.danger {
+				border: 1px solid red;
+			}
 		</style>
 </head>
 <body>
@@ -54,8 +65,8 @@
   <div class="container has-text-centered">
   <div class="column is-8 is-offset-2">
 	  <h3 class="title has-text-grey">Reclamo</h3>
-    <div class="box" style="background-color:hsl(0, 0%, 90%);">
-      <form id="formulario" method="post" action="">
+    <div class="box" id="app" style="background-color:hsl(0, 0%, 90%);">
+      <form id="formulario" method="post" action="" @submit.prevent="validateBeforeForm">
         <div class="field is-horizontal">
             <div class="field-label">
                 <label class="label has-text-left">Nombre:</label>
@@ -63,11 +74,14 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control has-icons-left">
-                        <input type="text" class="input name" name="name" />
+                        <input type="text" class="input name"
+												name="name" v-model="name" v-validate="'required|alpha'"
+												:class="{'is-danger': errors.has('name')}"/>
                         <span class="icon is-small is-left">
                           <i class="fas fa-user"></i>
                         </span>
                     </div>
+										<div v-show="errors.has('name')" class="danger-message">{{ errors.first('name') }}</div>
                 </div>
             </div>
         </div>
@@ -78,12 +92,15 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control has-icons-left">
-                        <input type="text" class="input" name="dni" />
+                        <input type="text" class="input" name="id"
+												 v-model="id" v-validate="'required|digits:8'"
+												 :class="{'danger': errors.has('id')}"/>
                         <span class="icon is-small is-left">
                           <i class="fas fa-address-card"></i>
                         </span>
                     </div>
-                </div>
+										<div v-show="errors.has('id')" class="danger-message">{{ errors.first('id') }}</div>
+								</div>
             </div>
         </div>
         <div class="field is-horizontal">
@@ -93,11 +110,14 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control has-icons-left">
-                        <input type="text" class="input" name="telefono" />
+                        <input type="text" class="input" name="phone"
+												v-model="phone" v-validate="'required|numeric'"
+												:class="{'danger': errors.has('phone')}"/>
                         <span class="icon is-small is-left">
                           <i class="fas fa-mobile-alt"></i>
                         </span>
                     </div>
+										<div v-show="errors.has('phone')" class="danger-message">{{ errors.first('phone') }}</div>
                 </div>
             </div>
         </div>
@@ -108,19 +128,26 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control has-icons-left">
-                        <input type="text" class="input email" name="email" />
+                        <input type="text" class="input email" name="email"
+												v-model="email" v-validate="'required|email'"
+												:class="{'danger': errors.has('email')}" />
                         <span class="icon is-small is-left">
                           <i class="fas fa-at"></i>
                         </span>
                     </div>
+										<div v-show="errors.has('email')" class="danger-message">{{ errors.first('email') }}</div>
                 </div>
             </div>
         </div>
         <div class="field">
           <label class="label has-text-left">Reclamo:</label>
           <div class="control">
-            <textarea class="textarea" placeholder="Ponga su reclamo aquí"></textarea>
+            <textarea class="textarea" placeholder="Ponga su reclamo aquí"
+						name="textarea" v-model="textarea" v-validate="'required'"
+						 :class="{'danger': errors.has('textarea')}" />
+						></textarea>
           </div>
+					<div v-show="errors.has('textarea')" class="danger-message">{{ errors.first('textarea') }}</div>
         </div>
         <nav class="level">
   			<div class="level-item has-text-centered">
@@ -129,7 +156,7 @@
             <button type="submit" name="valider" value="Valider" class="button is-link">Enviar</button>
           </div>
           <div class="control">
-            <button class="button is-text">Cancelar</button>
+            <button class="button is-text ">Cancelar</button>
           </div>
         </div></nav>
 </div>
@@ -142,6 +169,51 @@
 </div>
 </section>
 <script src="/js/bulma.js">
+</script>
+<script>
+
+const dict = {
+  custom: {
+    id: {
+      required: 'Este campo es necesario',
+			digits: 'Ingrese DNI válido'
+    },
+		email:{
+			required: 'Este campo es necesario',
+			email: 'Ingrese un email válido'
+		},
+		phone: {
+      required: 'Este campo es necesario',
+			numeric: 'Ingrese teléfono válido'
+    },
+		name:{
+			required: 'Este campo es necesario',
+			alpha: 'Ingrese un nombre válido'
+		},
+		textarea:{
+			required: 'Este campo es necesario'
+		}
+  }
+};
+	Vue.use(VeeValidate);
+	VeeValidate.Validator.localize('en', dict);
+	new Vue({
+		el: "#app",
+		data:
+			{
+				id: "",
+				email: "",
+				phone: "",
+				name:"",
+				textarea:"",
+			},
+		methods: {
+			validateBeforeForm: function() {
+			this.$validator.localize('en', dict);
+			this.$validator.validateAll();
+		}}
+
+	});
 </script>
 </body>
 </html>
