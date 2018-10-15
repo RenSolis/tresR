@@ -46,8 +46,8 @@ module.exports = (sequelize, DataType) => {
         points: {
             type: DataType.INTEGER,
             allowNull: false,
+            defaultValue: 0,
             validate: {
-                defaultValue: 0,
                 min: 0
             }
         }

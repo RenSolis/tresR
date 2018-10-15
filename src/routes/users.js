@@ -1,7 +1,15 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
-import User from '../models/user';
+import { models } from '../database';
+const { User } = models;
 const router = express.Router();
+
+router.get('/', (req, res) => {
+    User.findAll({})
+        .then(user => {
+            res.send(user);
+        });
+});
 
 router.get('/signup', (req, res) => {
     res.render('register');
@@ -24,12 +32,20 @@ router.post('/signup', async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(req.body.password, salt);
         user.password = hash;
-        console.log(user);
+        User.create(user)
+            .then(result => {
+                console.log(result);
+                req.flash('success', 'Thats ok');
+                res.redirect(303, '/');
+            })
+            .catch(err => {
+                console.log(err.message);
+                req.flash('danger', 'You have an error.');
+                res.redirect(303, '/users/signup');
+            });
     } catch (err) {
         return console.log(err);
     }
-    req.flash('success', 'Thats ok');
-    res.redirect(303, '/');
 });
 
 router.get('/login', (req, res) => {
