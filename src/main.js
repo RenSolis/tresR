@@ -1,15 +1,15 @@
 // Modules
-import path from 'path';
 import routes from './routes/routes';
 import users from './routes/users';
+import session from 'express-session';
+import flash from 'connect-flash';
 import express from 'express';
-const database = require('./database');
+import database from './database';
 const app = express();
 
 //  Middlewares
-app.use(express.static(path.join(__dirname, 'public')));
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+require('./middlewares/app-settings')(app);
+require('./middlewares/session-validates')(app);
 
 //  Routes
 app.use('/', routes);
