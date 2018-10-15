@@ -2,52 +2,44 @@ import path from 'path';
 import express from 'express';
 const router = express.Router();
 
-function route(route) { 
-  return path.join(__dirname, route);
-}
-
 router.get('/', (req, res) => {
-    res.sendFile(route('../views/Congreso.html'));
-});
-
-router.get('/login', (req, res) => {
-    res.sendFile(route('../views/Iniciar_Sesion.html'));
+    res.render('Congreso');
 });
 
 router.get('/materials', (req, res) => {
-    res.sendFile(route('../views/Materiales.html'));
+    res.render('Materiales');
 });
 
 router.get('/materials/paperboard', (req, res) => {
-    res.sendFile(route('../views/MaterialCarton.html'));
+    res.render('MaterialCarton');
 });
 
 router.get('/materials/electronic', (req, res) => {
-    res.sendFile(route('../views/MaterialElectronico.html'));
+    res.render('MaterialElectronico');
 });
 
 router.get('/materials/paper', (req, res) => {
-    res.sendFile(route('../views/MaterialPapel.html'));
+    res.render('MaterialPapel');
 });
 
 router.get('/materials/plastic', (req, res) => {
-    res.sendFile(route('../views/MaterialPlastico.html'));
+    res.render('MaterialPlastico');
 });
 
 router.get('/materials/glass', (req, res) => {
-    res.sendFile(route('../views/MaterialVidrio.html'));
+    res.render('MaterialVidrio');
 });
 
 router.get('/statistics', (req, res) => {
-    res.sendFile(route('../views/Estadisticas.html'));
+    res.render('Estadisticas');
 });
 
 router.get('/qr', (req, res) => {
-    res.sendFile(route('../views/QR.html'));
+    res.render('QR');
 });
 
 router.get('/claims', (req, res) => {
-    res.sendFile(route('../views/Reclamos.html'));
+    res.render('Reclamos');
 });
 
 module.exports = router;

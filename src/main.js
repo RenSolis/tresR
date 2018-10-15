@@ -1,8 +1,6 @@
 // Modules
 import routes from './routes/routes';
 import users from './routes/users';
-import session from 'express-session';
-import flash from 'connect-flash';
 import express from 'express';
 import database from './database';
 const app = express();

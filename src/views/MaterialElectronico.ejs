@@ -1,0 +1,67 @@
+<% layout('layout') %>
+<div class="hero-body" style="align-items: flex-start;"><!--Cuerpo-->
+  <div class="container has-text-centered">
+    <div class="columns is-vcentered" style="margin-top: 4rem;">
+      <div class="column is-4 is-offset-1 is-hidden-mobile">
+        <span class="icon is-large">
+          <i class="fas fa-code-branch fa-7x"></i>
+        </span>
+      </div>
+      <div class="column is-4 is-offset-1 is-hidden-tablet">
+        <span class="icon is-large">
+          <i class="fas fa-code-branch fa-5x"></i>
+        </span>
+      </div>
+      <div class="column is-5 is-offset-1">
+        <h1 class="title is-1 is-hidden-mobile" style="font-size: 70px;">
+          Electrónicos
+        </h1>
+        <h1 class="title is-1 is-hidden-tablet" style="font-size: 40px;">
+          Electrónicos
+        </h1>
+      </div>
+    </div>
+    <div class="columns is-vcentered" style="margin-top: 2rem;">
+      <div class="column is-4 is-offset-1">
+        <div class="box has-text-justified">
+          <p>
+          Los aparatos eléctricos contienen sustancias como bromo, cadmio,
+					fósforo o mercurio que pueden ser muy dañinos para la salud y el medio ambiente.
+					Su correcto tratamiento permite además recuperar metales, plástico y vidrio
+					para su reciclaje. Actualmente, en la mayoría de los hogares hay un gran número
+					de estos aparatos  y cuando dejan de ser útiles, porque se estropean o se
+					cambian por modelos nuevos, se debe asegurar que su tratamiento como residuo
+					sea el más respetuoso con el medio ambiente.
+          </p>
+      </div>
+    </div>
+      <div class="column is-5 is-offset-1">
+        <div id="map" style="height:300px; width:100%;"></div>
+        <script>
+          var map;
+          function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: {lat: -8.106591, lng: -79.032068},
+              zoom: 14
+            });
+            var puntos = [
+              {
+                position: new google.maps.LatLng(-8.126591, -79.032068),
+              }
+            ];
+            puntos.forEach(function(punto) {
+              var marker = new google.maps.Marker({
+                position: punto.position,
+                map: map
+              });
+            });
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWgEjuWSwFWMyx7qmvn07feSZeQngHd4E&callback=initMap"
+async defer></script>
+</body>
+</html>

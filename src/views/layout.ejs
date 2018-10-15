@@ -7,7 +7,19 @@
 		<link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
 		<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 		<style>
+    .hero-body {
+      font-family: 'Open Sans', serif;
+      font-size: 14px;
+      font-weight: 300;
+    }
+    p {
+      font-weight: 700;
+    }
+    p.subtitle {
+      padding-top: 1rem;
+    }
 		</style>
 </head>
 <body>
@@ -27,7 +39,7 @@
               </div>
               <div id="navbarMenu" class="navbar-menu"><!--Parte principal del navbar-->
                   <div class="navbar-end is-hidden-touch"><!--Parte final del navbar-->
-															<a class="navbar-item is-active ">Mapa</a><!--Pestaña actual, por así decirlo-->
+															<a class="navbar-item ">Mapa</a><!--Pestaña actual, por así decirlo-->
                               <a class="navbar-item " href="materials">Reciclaje</a>
                               <a class="navbar-item " href="claims">Reclamos</a>
 															<a class="navbar-item " href="statistics">Estadisticas</a>
@@ -38,7 +50,7 @@
 									<nav class="level has-background-grey-darker">
 									<div class="level-item has-text-centered">
 									<figure class=" image is-128x128 is-hidden-desktop"><img class="is-rounded" src="https://pm1.narvii.com/6640/b0dc8c743f5f28929dd805f295159ef2210041cc_128.jpg" alt="Usuario p"></figure></div></nav>
-									<a class="navbar-item is-active button is-dark has-text-left">Mapa</a><!--Pestaña actual, por así decirlo-->
+									<a class="navbar-item button is-dark has-text-left">Mapa</a><!--Pestaña actual, por así decirlo-->
 									<a class="navbar-item button is-dark has-text-left" href="materials">Reciclaje</a>
 									<a class="navbar-item button is-dark has-text-left" href="claims">Reclamos</a>
 									<a class="navbar-item button is-dark has-text-left" href="statistics">Estadisticas</a>
@@ -49,11 +61,6 @@
           </div>
       </nav>
   </div>
-<div class="hero-body" style="align-items: flex-start;"><!--Cuerpo-->
-
-</div>
+    <%- body -%>
 </section>
-<script src="/js/bulma.js">
-</script>
-</body>
-</html>
+    <script src="/js/bulma.js"></script>

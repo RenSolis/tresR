@@ -1,0 +1,65 @@
+<% layout('layout') %>
+  <div class="hero-body" style="align-items: flex-start;"><!--Cuerpo-->
+    <div class="container has-text-centered">
+      <div class="columns is-vcentered" style="margin-top: 4rem;">
+        <div class="column is-4 is-offset-1 is-hidden-mobile">
+          <span class="icon is-large">
+            <i class="fas fa-box fa-7x"></i>
+          </span>
+        </div>
+        <div class="column is-4 is-offset-1 is-hidden-tablet">
+          <span class="icon is-large">
+            <i class="fas fa-box fa-5x"></i>
+          </span>
+        </div>
+        <div class="column is-5 is-offset-1">
+          <h1 class="title is-1 is-hidden-mobile" style="font-size: 70px;">
+            Cartón
+          </h1>
+          <h1 class="title is-1 is-hidden-tablet" style="font-size: 40px;">
+            Cartón
+          </h1>
+        </div>
+      </div>
+      <div class="columns is-vcentered" style="margin-top: 2rem;">
+        <div class="column is-4 is-offset-1">
+          <div class="box has-text-justified">
+            <p>
+            El cartón es un material formado por varias capas de papel superpuestas,
+            a base de fibra virgen o de papel reciclado. El cartón es más grueso, duro
+            y resistente que el papel. Algunos tipos de cartón son usados para fabricar
+            embalajes y envases, básicamente cajas de diversos tipos. La capa superior
+            puede recibir un acabado diferente llamado «estuco» que le confiere mayor vistosidad.
+            </p>
+        </div>
+      </div>
+        <div class="column is-5 is-offset-1">
+          <div id="map" style="height:300px; width:100%;"></div>
+          <script>
+            var map;
+            function initMap() {
+              map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: -8.106591, lng: -79.032068},
+                zoom: 14
+              });
+              var puntos = [
+                {
+                  position: new google.maps.LatLng(-8.126591, -79.032068),
+                }
+              ];
+              puntos.forEach(function(punto) {
+                var marker = new google.maps.Marker({
+                  position: punto.position,
+                  map: map
+                });
+              });
+            }
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWgEjuWSwFWMyx7qmvn07feSZeQngHd4E&callback=initMap"
+async defer></script>
+</body>
+</html>
