@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
-    res.render('register');
+    res.render('login');
 });
 
 router.post('/signup', async (req, res) => {
@@ -36,7 +36,7 @@ router.post('/signup', async (req, res) => {
             .then(result => {
                 console.log(result);
                 req.flash('success', 'Thats ok');
-                res.redirect(303, '/');
+                res.redirect(303, '/users');
             })
             .catch(err => {
                 console.log(err.message);
@@ -49,7 +49,7 @@ router.post('/signup', async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-    res.render('Iniciar_Sesion');
+    res.render('login');
 });
 
 router.post('/login', (req, res) => {
@@ -57,7 +57,7 @@ router.post('/login', (req, res) => {
     const errors = req.validationErrors();
     if (errors) {
         res.locals.errors = errors;
-        res.render('Iniciar_Sesion');
+        res.render('login');
     }
 });
 

@@ -2,7 +2,7 @@ import express from 'express';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('Congreso');
+    res.render('main_map');
 });
 
 router.get('/materials', (req, res) => {
