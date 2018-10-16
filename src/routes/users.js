@@ -70,7 +70,7 @@ router.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
-router.delete('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
     req.logout();
     req.flash('success', 'You are logged out.');
     res.redirect(303, '/users/login');

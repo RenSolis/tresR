@@ -30,7 +30,7 @@ router.get('/materials/glass', (req, res) => {
 });
 
 router.get('/statistics', (req, res) => {
-    res.render('Estadisticas');
+    res.render('statistics');
 });
 
 router.get('/qr', (req, res) => {
