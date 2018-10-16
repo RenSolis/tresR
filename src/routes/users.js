@@ -1,3 +1,4 @@
+import auth from '../middlewares/auth';
 import express from 'express';
 import passport from 'passport';
 import bcrypt from 'bcryptjs';
