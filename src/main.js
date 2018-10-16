@@ -1,14 +1,14 @@
 // Modules
 import routes from './routes/routes';
 import users from './routes/users';
-import passport from 'passport';
-import database from './database';
+import database from './config/database';
 import express from 'express';
 const app = express();
 
 //  Middlewares
 require('./middlewares/app-settings')(app);
 require('./middlewares/session-validates')(app);
+require('./middlewares/passport-settings')(app);
 
 //  Routes
 app.use('/', routes);

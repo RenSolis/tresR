@@ -1,6 +1,6 @@
 // Modules
 import Sequelize from 'sequelize';
-import config from './config/db-config';
+import config from './db-config';
 import fs from 'fs';
 import path from 'path';
 
@@ -14,7 +14,7 @@ const sequelize = new Sequelize(
     config.development.params
 );
 // Read all files Models
-const dir = path.join(__dirname, 'models');
+const dir = path.join(__dirname, '../models');
 fs.readdirSync(dir).forEach(filename => {
     const modelDir = path.join(dir, filename);
     const model = sequelize.import(modelDir);

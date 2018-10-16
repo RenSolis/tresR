@@ -1,6 +1,7 @@
 import express from 'express';
+import passport from 'passport';
 import bcrypt from 'bcryptjs';
-import { models } from '../database';
+import { models } from '../config/database';
 const { User } = models;
 const router = express.Router();
 
@@ -12,7 +13,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
-    res.render('login');
+    res.render('register');
 });
 
 router.post('/signup', async (req, res) => {
@@ -26,7 +27,17 @@ router.post('/signup', async (req, res) => {
         res.locals.errors = errors;
         return res.render('register');
     };
-    const user = req.body;
+    let user = await User.findOne({ where: { email: req.body.email } });
+    if (user) {
+        req.flash('information', 'That email is already taken.');
+        return res.redirect(303, '/users/signup');
+    } 
+    user = await User.findOne({ where: { dni: req.body.dni } });
+    if (user) {
+        req.flash('information', 'That DNI is already taken.');
+        return res.redirect(303, '/users/signup');
+    }
+    user = req.body;
     delete user['password_confirmation'];
     try {
         const salt = await bcrypt.genSalt(10);
@@ -34,14 +45,13 @@ router.post('/signup', async (req, res) => {
         user.password = hash;
         User.create(user)
             .then(result => {
-                console.log(result);
-                req.flash('success', 'Thats ok');
-                res.redirect(303, '/users');
+                req.flash('success', 'Please login.');
+                return res.redirect(303, '/users/login');
             })
             .catch(err => {
                 console.log(err.message);
                 req.flash('danger', 'You have an error.');
-                res.redirect(303, '/users/signup');
+                return res.redirect(303, '/users/signup');
             });
     } catch (err) {
         return console.log(err);
@@ -52,13 +62,18 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-router.post('/login', (req, res) => {
-    req.checkBody('email', 'Email is required.').notEmpty();
-    const errors = req.validationErrors();
-    if (errors) {
-        res.locals.errors = errors;
-        res.render('login');
-    }
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local-login', {
+        successRedirect: '/',
+        failureRedirect: '/users/login',
+        failureFlash: true
+    })(req, res, next);
+});
+
+router.delete('/logout', (req, res) => {
+    req.logout();
+    req.flash('success', 'You are logged out.');
+    res.redirect(303, '/users/login');
 });
 
 module.exports = router;

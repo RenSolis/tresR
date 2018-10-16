@@ -5,7 +5,7 @@ import flash from "connect-flash";
 module.exports = app => {
     // Use sessions middleware
     app.use(session({
-        secret: 'login',
+        secret: 'keyboard cat',
         resave: true,
         saveUninitialized: true
     }));
