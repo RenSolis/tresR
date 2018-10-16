@@ -1,4 +1,5 @@
 import auth from '../middlewares/auth';
+import noAuth from '../middlewares/no-auth';
 import express from 'express';
 import passport from 'passport';
 import bcrypt from 'bcryptjs';
@@ -13,11 +14,11 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/signup', (req, res) => {
+router.get('/signup', noAuth, (req, res) => {
     res.render('register');
 });
 
-router.post('/signup', async (req, res) => {
+router.post('/signup', noAuth, async (req, res) => {
     req.checkBody('email', 'Email is required.').notEmpty();
     req.checkBody('email', 'Email is not valid.').isEmail();
     req.checkBody('dni', 'Dni is required.').notEmpty();
@@ -59,19 +60,19 @@ router.post('/signup', async (req, res) => {
     }
 });
 
-router.get('/login', (req, res) => {
+router.get('/login', noAuth, (req, res) => {
     res.render('login');
 });
 
-router.post('/login', (req, res, next) => {
-    passport.authenticate('local-login', {
-        successRedirect: '/',
-        failureRedirect: '/users/login',
-        failureFlash: true
-    })(req, res, next);
+router.post("/login", noAuth, (req, res, next) => {
+  passport.authenticate("local-login", {
+    successRedirect: "/",
+    failureRedirect: "/users/login",
+    failureFlash: true
+  })(req, res, next);
 });
 
-router.get('/logout', (req, res) => {
+router.get('/logout', auth, (req, res) => {
     req.logout();
     req.flash('success', 'You are logged out.');
     res.redirect(303, '/users/login');
