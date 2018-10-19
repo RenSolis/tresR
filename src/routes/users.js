@@ -27,6 +27,7 @@ router.post('/signup', noAuth, async (req, res) => {
     const errors = req.validationErrors();
     if (errors) {
         res.locals.errors = errors;
+        res.locals.user = null;
         return res.render('register');
     };
     let user = await User.findOne({ where: { email: req.body.email } });
