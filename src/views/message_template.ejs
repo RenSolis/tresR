@@ -1,4 +1,8 @@
-<div id="messages">
+<div class="container" style="margin-top:40px;">
+  <div class="columns">
+    <div class="column">
+<div id="messages" class="notification is-warning">
+<button class="delete"></button>
     <% Object.keys(messages).forEach(function (type) { %>
         <ul class="alert alert-<%= type %>">
             <% messages[type].forEach(function (message) { %>
@@ -7,3 +11,17 @@
         </ul>
     <% }) %>
 </div>
+</div>
+</div>
+</div>
+<script>
+var deleteButtons = document.getElementsByClassName('delete');
+
+for (var i = 0; i < deleteButtons.length; i++) {
+deleteButtons[i].addEventListener('click', dismiss);
+}
+
+function dismiss(e) {
+this.parentNode.classList.add('is-hidden');
+}
+</script>
