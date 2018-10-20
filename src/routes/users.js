@@ -69,6 +69,7 @@ router.post("/login", noAuth, (req, res, next) => {
   passport.authenticate("local-login", {
     successRedirect: "/",
     failureRedirect: "/users/login",
+    badRequestMessage: 'Llene los campos.',
     failureFlash: true
   })(req, res, next);
 });
