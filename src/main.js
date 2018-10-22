@@ -1,4 +1,5 @@
 // Modules
+import claims from './routes/claims';
 import routes from './routes/routes';
 import users from './routes/users';
 import database from './config/database';
@@ -11,11 +12,12 @@ require('./middlewares/session-validates')(app);
 require('./middlewares/passport-settings')(app);
 
 //  Routes
+app.use('/',claims);
 app.use('/', routes);
 app.use('/users', users);
 
 //  Create server and database
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8080);
 database.sequelize.sync().done(() => {
     app.listen(app.get('port'), () => console.log(`Listening on port ${app.get('port')}`));
 });
