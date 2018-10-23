@@ -19,12 +19,12 @@ router.post('/', (req,res)=>{
 	Claim.create(claim)
 		.then(result => {
 			req.flash('success', 'Your claim was sent.');
-			return res.render('Reclamos');
+			return res.redirect(303, '/claims');
 		})
 		.catch(err => {
 			console.log(err);
 			req.flash('danger', 'You have an error.');
-			return res.render('Reclamos');
+			return res.redirect(303, '/claims');
 		});
 });
 
