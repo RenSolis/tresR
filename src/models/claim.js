@@ -1,6 +1,10 @@
 module.exports = (sequelize, DataType) => {
     const Claim = sequelize.define('Claim', {
-        
+        id: {
+            type: DataType.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },        
         name:{
             type: DataType.STRING,
             allowNull: false,
@@ -8,30 +12,24 @@ module.exports = (sequelize, DataType) => {
                 notEmpty: true
             }
         },
-
         dni: {
             type: DataType.STRING,
-            unique: true,
             allowNull: false,
             validate: {
                 notEmpty: true,
                 min: 7
             }
         },
-
         phone: {
             type: DataType.STRING,
-            unique: true,
             allowNull: false,
             validate: {
                 notEmpty: true,
                 min: 7
             }
         },
-
         email: {
             type: DataType.STRING,
-            unique: true,
             allowNull: false,
             validate: {
                 isEmail: true,
@@ -40,7 +38,6 @@ module.exports = (sequelize, DataType) => {
                 max: 255
             }
         },
-
         claim: {
             type: DataType.STRING,
             allowNull: false,
@@ -49,7 +46,6 @@ module.exports = (sequelize, DataType) => {
                 max: 255 
             }
         }
-
     });
     return Claim;
 };

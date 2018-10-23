@@ -12,77 +12,80 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control has-icons-left">
-                        <input type="text" class="input name" name="name" />
+                        <input type="text" class="input name" name="name"/>
                         <span class="icon is-small is-left">
-                          <i class="fas fa-user"></i>
+                        <i class="fas fa-user"></i>
                         </span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="field is-horizontal">
-            <div class="field-label">
-                <label class="label has-text-left">DNI:</label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <div class="control has-icons-left">
-                        <input type="text" class="input" name="dni" />
-                        <span class="icon is-small is-left">
-                          <i class="fas fa-address-card"></i>
-                        </span>
+        <% if(!user) { %>
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label has-text-left">DNI:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control has-icons-left">
+                            <input type="text" class="input" name="dni"/>
+                            <span class="icon is-small is-left">
+                            <i class="fas fa-address-card"></i>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="field is-horizontal">
-            <div class="field-label">
-                <label class="label has-text-left">Telefono:</label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <div class="control has-icons-left">
-                        <input type="text" class="input" name="telefono" />
-                        <span class="icon is-small is-left">
-                          <i class="fas fa-mobile-alt"></i>
-                        </span>
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label has-text-left">Telefono:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control has-icons-left">
+                            <input type="text" class="input" name="phone"/>
+                            <span class="icon is-small is-left">
+                            <i class="fas fa-mobile-alt"></i>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="field is-horizontal">
-            <div class="field-label">
-                <label class="label has-text-left">Correo:</label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <div class="control has-icons-left">
-                        <input type="text" class="input email" name="email" />
-                        <span class="icon is-small is-left">
-                          <i class="fas fa-at"></i>
-                        </span>
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label has-text-left">Correo:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control has-icons-left">
+                            <input type="text" class="input email" name="email"/>
+                            <span class="icon is-small is-left">
+                            <i class="fas fa-at"></i>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        <% } %>
         <div class="field">
           <label class="label has-text-left">Reclamo:</label>
           <div class="control">
-            <textarea class="textarea" placeholder="Ponga su reclamo aquí"></textarea>
+            <textarea class="textarea" placeholder="Ponga su reclamo aquí" name="claim"></textarea>
           </div>
         </div>
         <nav class="level">
   			<div class="level-item has-text-centered">
-          <div class="field is-grouped">
-          <div class="control">
-            <button type="submit" name="valider" value="Valider" class="button is-link">Enviar</button>
-          </div>
-          <div class="control">
-            <button class="button is-text">Cancelar</button>
-          </div>
-        </div></nav>
-</div>
-</form>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <input type="submit" value="Enviar" class="button is-link"> 
+                    </div>
+                    <div class="control">
+                    <a href="/" class="button is-text">Cancelar</a>
+                </div>
+            </div>
+        </nav>
+    </form>
+    </div>
     </div>
   </div>
   </div>
