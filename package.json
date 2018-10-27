@@ -2,7 +2,7 @@
   "name": "tres-r",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "build": "./node_modules/.bin/babel src --out-dir dist",
     "babel-node": "babel-node src/main.js",
@@ -24,14 +24,14 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "reniec-sunat-js": "^1.0.0",
-    "sequelize": "^4.39.0",
-    "sqlite3": "^4.0.2"
+    "sequelize": "^4.0.0",
+    "sqlite3": "^4.0.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
     "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.18.5"
   }
 }

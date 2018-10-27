@@ -11,8 +11,8 @@ router.post('/', (req,res)=>{
 	let claim;
 	if (req.user) {
 		claim = req.user;
-		claim.name = req.body.name;
 		claim.claim = req.body.claim;
+		claim.userId = req.user.id;
 	} else {
 		claim = req.body;
 	}

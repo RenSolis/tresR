@@ -4,7 +4,7 @@ module.exports = (sequelize, DataType) => {
             type: DataType.INTEGER,
             primaryKey: true,
             autoIncrement: true
-        },        
+        },       
         name:{
             type: DataType.STRING,
             allowNull: false,
@@ -45,7 +45,17 @@ module.exports = (sequelize, DataType) => {
                 notEmpty: true,
                 max: 255 
             }
+        },
+        userId: {
+            type: DataType.INTEGER,
+            references: {
+                model: 'Users',
+                key: 'id'
+            }
         }
     });
+    Claim.associate = models => {
+        Claim.belongsTo(models.User, { as: 'User', foreignKey: 'userId' });
+    };
     return Claim;
 };

@@ -5,6 +5,31 @@ module.exports = (sequelize, DataType) => {
             primaryKey: true,
             autoIncrement: true
         },
+        name: {
+            type: DataType.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true,
+                max: 255
+            }
+        },
+        surname: {
+            type: DataType.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true,
+                max: 255
+            }
+        },
+        age: {
+            type: DataType.INTEGER,
+            allowNull: false,
+            validate: {
+                notEmpty: true,
+                min: 18,
+                max: 120
+            }
+        },
         dni: {
             type: DataType.STRING,
             unique: true,
@@ -52,5 +77,8 @@ module.exports = (sequelize, DataType) => {
             }
         }
     });
+    User.associate = models => {
+        User.hasMany(models.Claim, { foreignKey: 'userId' });
+    };
     return User;
 };

@@ -23,7 +23,7 @@ fs.readdirSync(dir).forEach(filename => {
 //Associate models
 Object.keys(db.models).forEach(key => {
     if (db.models[key].associate)
-        db.models[key].associate(db);
+        db.models[key].associate(db.models);
 });
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
