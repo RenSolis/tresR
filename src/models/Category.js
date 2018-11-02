@@ -1,27 +1,21 @@
-module.exports = (sequelize,DataType)=>{
-	const Category = sequelize.define("Category",{
-		
-		id:{
+module.exports = (sequelize, DataType) => {
+	const Category = sequelize.define('Category', {		
+		id: {
 			type: DataType.INTEGER,
 			primaryKey: true,
 			autoIncrement: true
 		},
-
-		name:{
-		
+		name: {
 			type: DataType.STRING,
 			allowNull: false,
-			validate:{
+			validate: {
 				notEmpty: true,
 				min: 0
 			}
 		}
-
 	});
-
-	Category.associate= models=>{
-		Category.hasMany(models.Product, {foreignKey: 'categoryId'});
+	Category.associate = models => {
+		Category.hasMany(models.Product, {foreignKey: 'categoryId' });
 	}
-
 	return Category;
 }

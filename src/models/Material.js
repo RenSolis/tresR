@@ -25,6 +25,7 @@ module.exports = (sequelize, DataType) => {
     Material.associate = models => {
         Material.belongsTo(models.MaterialMarker, { as: 'MaterialMarker', foreignKey: 'materialMarkerId' });
         Material.hasMany(models.Place, { foreignKey: 'materialId' });
+        Material.hasOne(models.WeightPoint, { foreignKey: 'materialId' });
     };
     return Material;
 }
