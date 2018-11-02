@@ -10,6 +10,7 @@ module.exports = (sequelize, DataType) => {
             allowNull: false,
             validate: {
                 notEmpty: true,
+                min: 3,
                 max: 255
             }
         },
@@ -41,7 +42,6 @@ module.exports = (sequelize, DataType) => {
         },
         phone: {
             type: DataType.STRING,
-            unique: true,
             allowNull: false,
             validate: {
                 notEmpty: true,
@@ -75,10 +75,19 @@ module.exports = (sequelize, DataType) => {
             validate: {
                 min: 0
             }
+        },
+        roleId: {
+            type: DataType.INTEGER,
+            references: {
+                model: 'Roles',
+                key: 'id'
+            }
         }
     });
     User.associate = models => {
+        User.belongsTo(models.Role, { as: 'Role', foreignKey: 'roleId' });
         User.hasMany(models.Claim, { foreignKey: 'userId' });
+        User.hasMany(models.Discount, { foreignKey: 'userId' });
     };
     return User;
 };

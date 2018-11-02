@@ -1,10 +1,10 @@
 {
   "name": "tres-r",
   "version": "1.0.0",
-  "description": "",
+  "description": "For init the server use: 1. npm install 2. npm run dev",
   "main": "src/main.js",
   "scripts": {
-    "build": "./node_modules/.bin/babel src --out-dir dist",
+    "build": "babel src --out-dir dist",
     "babel-node": "babel-node src/main.js",
     "dev": "nodemon --exec npm run  babel-node",
     "start": "node dist/main.js"
@@ -33,5 +33,13 @@
     "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "nodemon": "^1.18.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RenSolis/tresR.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RenSolis/tresR/issues"
+  },
+  "homepage": "https://github.com/RenSolis/tresR#readme"
 }

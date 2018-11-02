@@ -1,18 +1,18 @@
 <div class="container" style="margin-top:40px;">
-  <div class="columns">
-    <div class="column">
-<div id="messages" class="notification is-warning">
-<button class="delete"></button>
-    <% Object.keys(messages).forEach(function (type) { %>
-        <ul class="alert alert-<%= type %>">
-            <% messages[type].forEach(function (message) { %>
-                <li><%= message %></li>
-            <% }) %>
-        </ul>
-    <% }) %>
-</div>
-</div>
-</div>
+    <div class="columns">
+        <div class="column">
+            <div id="messages" class="notification is-warning">
+                <button class="delete"></button>
+                <% Object.keys(messages).forEach(function (type) { %>
+                    <ul class="alert alert-<%= type %>">
+                        <% messages[type].forEach(function (message) { %>
+                            <li><%= message %></li>
+                    <% }) %>
+                    </ul>
+                <% }) %>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
 var deleteButtons = document.getElementsByClassName('delete');

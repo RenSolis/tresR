@@ -9,7 +9,7 @@ module.exports = app => {
         resave: true,
         saveUninitialized: true
     }));
-    // Initi errors messages
+    // Init errors messages
     app.use((req, res, next) => {
         res.locals.errors = null;
         next();
