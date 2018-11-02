@@ -10,7 +10,6 @@ module.exports = (sequelize, DataType) => {
             allowNull: false,
             validate: {
                 notEmpty: true,
-                min: 3,
                 max: 255
             }
         },
