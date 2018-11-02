@@ -9,7 +9,7 @@ router.get('/paperboard', (req, res) => {
   res.render("MaterialCarton");
 });
 
-router.get('electronic', (req, res) => {
+router.get('/electronic', (req, res) => {
   res.render("MaterialElectronico");
 });
 

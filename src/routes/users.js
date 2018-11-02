@@ -78,4 +78,22 @@ router.get('/logout', auth, (req, res) => {
     res.redirect(303, '/users/login');
 });
 
+router.get('/me', auth, async (req, res) => {
+    try {
+        if (req.user) {
+            User.findById(req.user.id)
+                .then(result => {
+                    return res.render('UserProfile');
+                })
+                .catch(err => {
+                    return console.log(err);
+                });
+        } else {
+            return res.redirect(303, '/');
+        }
+    } catch(err) {
+        return console.log(err);
+    }
+});
+
 module.exports = router;

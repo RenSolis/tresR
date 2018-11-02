@@ -24,12 +24,14 @@
 </head>
 <body>
 	<section class="hero is-fullheight is-default is-bold">
-	  <div class="hero-head" style="background-color: #73C6B6;">
-	      <nav class="navbar is-primary"> <!--Navegador cabecera-->
+	  <div class="hero-head" style="background-color: #000000;">
+	      <nav class="navbar is-dark"> <!--Navegador cabecera-->
           <div class="container">
               <div class="navbar-brand"><!--Parte derecha del navbar-->
                   <a class="navbar-item" href="/"><!--Logo que estará en la derecha-->
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Trash_Can_23.svg/758px-Trash_Can_23.svg.png" alt="Logo">
+                        <span class="icon">
+			              	<i class="fab fa-apple"></i>
+                        </span>
                   </a>
                   <span class="navbar-burger burger" data-target="navbarMenu"><!--Ícono desplegable con el contenido de navbarMenu-->
                   <span></span>
@@ -40,6 +42,9 @@
               <div id="navbarMenu" class="navbar-menu"><!--Parte principal del navbar-->
                   <div class="navbar-end is-hidden-touch"><!--Parte final del navbar-->
                         <a class="navbar-item" href="/">Mapa</a><!--Pestaña actual, por así decirlo-->
+                        <% if (user) { %>
+                            <a class="navbar-item" href="/users/me"><%= user.name %></a>
+                        <% } %>
                         <a class="navbar-item " href="/materials">Reciclaje</a>
                         <a class="navbar-item " href="/claims">Reclamos</a>
                         <% if (!user) { %>
@@ -53,6 +58,9 @@
                             <div class="level-item has-text-centered">
                             <figure class=" image is-128x128 is-hidden-desktop" style="margin-top:10px;"><img class="is-rounded" src="https://pm1.narvii.com/6640/b0dc8c743f5f28929dd805f295159ef2210041cc_128.jpg" alt="como debe ser pes tio : Usuario"></figure></div></nav>
                             <a class="navbar-item button is-dark has-text-left" href="/">Mapa</a><!--Pestaña actual, por así decirlo-->
+                            <% if (user) { %>
+                                <a class="navbar-item button is-dark has-text-left" href="/users/me"><%= user.name %></a>
+                            <% } %>
                             <a class="navbar-item button is-dark has-text-left" href="/materials">Reciclaje</a>
                             <a class="navbar-item button is-dark has-text-left" href="/claims">Reclamos</a>
                             <% if (!user) { %>
