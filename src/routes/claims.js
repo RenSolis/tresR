@@ -1,13 +1,31 @@
 import express from 'express';
 import { models } from '../config/database';
+import multer from 'multer';
 const { Claim } = models;
 const router = express.Router();
+
+//  Settings images
+const storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, './src/public/uploads/');
+	},
+	filename: function (req, file, cb) {
+		cb(null, new Date().toISOString() + file.originalname);
+	}
+});
+const upload = multer({ 
+	storage: storage,
+	limits: {
+		fileSize: 1024 * 1024 * 5
+	}
+});
 
 router.get('/', (req, res) => {
 	res.render('Reclamos');
 });
 
-router.post('/', (req,res)=>{
+router.post('/', upload.single('routeImage'), (req,res)=>{
+	console.log(req.file);
 	let claim;
 	if (req.user) {
 		claim = req.user;
@@ -16,6 +34,7 @@ router.post('/', (req,res)=>{
 	} else {
 		claim = req.body;
 	}
+	claim.routeImage = req.file.filename;
 	Claim.create(claim)
 		.then(result => {
 			req.flash('success', 'Your claim was sent.');

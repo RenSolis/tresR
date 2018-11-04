@@ -46,6 +46,10 @@ module.exports = (sequelize, DataType) => {
                 max: 255 
             }
         },
+        routeImage: {
+            type: DataType.STRING,
+            defaultValue: null
+        },
         userId: {
             type: DataType.INTEGER,
             references: {

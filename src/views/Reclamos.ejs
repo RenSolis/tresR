@@ -4,7 +4,7 @@
   <div class="column is-8 is-offset-2">
 	  <h3 class="title has-text-grey">Reclamo</h3>
     <div class="box" style="background-color:hsl(0, 0%, 90%);">
-      <form id="formulario" method="POST" action="/claims">
+    <form id="formulario" method="POST" action="/claims" enctype="multipart/form-data">
     <% if(!user) { %>
         <div class="field is-horizontal">
             <div class="field-label">
@@ -68,7 +68,22 @@
             </div>
         <% } %>
         <div class="field">
-          <label class="label has-text-left">Reclamo:</label>
+            <div class="file is-info">
+                <label class="file-label">
+                <input class="file-input" type="file" name="routeImage">
+                <span class="file-cta">
+                    <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                        Subir Imagen
+                    </span>
+                </span>
+                </label>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label has-text-left">Reclamo:</label>
           <div class="control">
             <textarea class="textarea" placeholder="Ponga su reclamo aquí" name="claim"></textarea>
           </div>
