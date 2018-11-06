@@ -21,7 +21,7 @@ module.exports = (sequelize, DataType) => {
         }
     });
     MaterialMarker.associate = models => {
-        MaterialMarker.hasMany(models.Material, { foreignKey: 'materialMarkerId' });
+        MaterialMarker.hasMany(models.Material, { as: 'MaterialMarker', foreignKey: 'materialMarkerId' });
     };
     return MaterialMarker;
 }

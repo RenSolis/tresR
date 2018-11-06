@@ -1,0 +1,69 @@
+<% layout('layout') %>
+<div class="hero-body" style="align-items: flex-start;"><!--Cuerpo-->
+	<div class="container has-text-centered">
+	<div class="column is-8 is-offset-2">
+    <article class="media">
+        <figure class="media-left">
+        <p class="image is-64x64">
+            <img src="https://www.fluigent.com/wp-content/uploads/2018/07/default-avatar-BW.png">
+        </p>
+        </figure>
+        <div class="media-content">
+        <div class="content">
+            <p>
+            <strong><%= claim.name %></strong>
+            <br>
+            <%= claim.claim %>
+            <br>
+            <small>Publicado el <%= (claim.createdAt).getDate() %>/<%= (claim.createdAt).getMonth() + 1 %> del <%= (claim.createdAt).getFullYear() %></small>
+            </p>
+        </div>
+        <% if(answers.length > 0) { %>
+            <% for(var answer of answers) { %>
+                <article class="media">
+                    <figure class="media-left">
+                    <p class="image is-48x48">
+                        <img src="https://www.usukraine.org/wp-content/plugins/our-team-enhanced/assets/images/default-avatar.png">
+                    </p>
+                    </figure>
+                    <div class="media-content">
+                    <div class="content">
+                        <p>
+                        <strong>Respuesta Administrador</strong>
+                        <br>
+                        <%= answer.body %>
+                        <br>
+                        <small>Respondido el <%= (answer.createdAt).getDate() %>/<%= (answer.createdAt).getMonth() + 1 %> del <%= (answer.createdAt).getFullYear() %></small>
+                        </p>
+                    </div>
+                    </div>
+                </article>
+            <% } %>
+        <% } else { %>
+            <article class="media">
+                <figure class="media-left">
+                <p class="image is-48x48">
+                    <img src="https://www.usukraine.org/wp-content/plugins/our-team-enhanced/assets/images/default-avatar.png">
+                </p>
+                </figure>
+                <div class="media-content">
+                <form method="POST" action="/claims/<%= claim.id %>">
+                    <div class="field">
+                        <p class="control">
+                        <textarea class="textarea" name="body" placeholder="Responder reclamo..."></textarea>
+                        </p>
+                    </div>
+                    <div class="field">
+                        <p class="control">
+                        <button class="button">Responder</button>
+                        </p>
+                    </div>
+                </form>
+                </div>
+            </article>
+        <% } %>
+        </div>
+    </article>
+	  </div>
+	  </div>
+</div>

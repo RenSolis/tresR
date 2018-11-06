@@ -87,6 +87,7 @@ module.exports = (sequelize, DataType) => {
         User.belongsTo(models.Role, { as: 'Role', foreignKey: 'roleId' });
         User.hasMany(models.Claim, { foreignKey: 'userId' });
         User.hasMany(models.Discount, { foreignKey: 'userId' });
+        User.hasMany(models.Answer, { foreignKey: 'userId' });
     };
     return User;
 };

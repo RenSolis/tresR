@@ -46,7 +46,7 @@ module.exports = (sequelize, DataType) => {
         }
     });
     Place.associate = models => {
-        Place.belongsTo(models.Material, { as: 'Material', foreignKey: 'materialId' });
+        Place.belongsTo(models.Material, { foreignKey: 'materialId' });
     };
     return Place;
 }

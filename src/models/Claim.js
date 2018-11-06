@@ -48,7 +48,7 @@ module.exports = (sequelize, DataType) => {
         },
         routeImage: {
             type: DataType.STRING,
-            defaultValue: null
+            defaultValue: ''
         },
         userId: {
             type: DataType.INTEGER,
@@ -59,7 +59,8 @@ module.exports = (sequelize, DataType) => {
         }
     });
     Claim.associate = models => {
-        Claim.belongsTo(models.User, { as: 'User', foreignKey: 'userId' });
+        Claim.belongsTo(models.User, { foreignKey: 'userId' });
+        Claim.hasOne(models.Answer, { as: 'Claim', foreignKey: 'claimId' });
     };
     return Claim;
 };

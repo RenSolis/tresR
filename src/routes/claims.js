@@ -1,7 +1,8 @@
+import auth from '../middlewares/auth';
 import express from 'express';
 import { models } from '../config/database';
 import multer from 'multer';
-const { Claim } = models;
+const { Claim, Answer } = models;
 const router = express.Router();
 
 //  Settings images
@@ -25,7 +26,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', upload.single('routeImage'), (req,res)=>{
-	console.log(req.file);
 	let claim;
 	if (req.user) {
 		claim = req.user;
@@ -34,17 +34,70 @@ router.post('/', upload.single('routeImage'), (req,res)=>{
 	} else {
 		claim = req.body;
 	}
-	claim.routeImage = req.file.filename;
+	if (!req.file) {
+		claim.routeImage = null;
+	} else {
+		claim.routeImage = req.file.filename;
+	}
+	claim.id = null;
 	Claim.create(claim)
 		.then(result => {
 			req.flash('success', 'Your claim was sent.');
-			return res.redirect(303, '/claims');
+			return res.redirect(303, '/claims/all');
 		})
 		.catch(err => {
 			console.log(err);
 			req.flash('danger', 'You have an error.');
 			return res.redirect(303, '/claims');
 		});
+});
+
+router.get('/all', async (req, res) => {
+	try {
+		const claims = await Claim.findAll({ order: [ ['createdAt', 'DESC' ] ] });
+		const answers = await Answer.findAll(); 
+		res.render('Comments', {
+			claims: claims,
+			answers: answers
+		});
+	} catch(err) {
+		console.log(err);
+	}
+});
+
+router.get('/:id', auth, async (req, res) => {
+	try {
+		const claim = await Claim.findById(req.params.id);
+		let answers = await Answer.findAll({ where: { claimId: claim.id } });
+		res.render('Claim', {
+			claim: claim,
+			answers: answers
+		});
+	} catch(err) {
+		console.log(err);
+	}
+});
+
+router.post('/:id', auth, async (req, res) => {
+	try {
+		const claim = await Claim.findById(req.params.id);
+		if(!claim) {
+			req.flash('danger', 'Reclamo no encontrado.');
+			return res.redirect(303, '/claims/all');
+		}
+		Answer.create({
+			body: req.body.body,
+			userId: req.user.id,
+			claimId: claim.id
+		})
+		.then(result => {
+			req.flash('success', 'Reclamo respondido.');
+			res.redirect(303, '/claims/all')
+		})
+		.catch(err => console.log(err));
+	} catch(err) {
+		console.log(err);
+	}
 });
 
 module.exports = router;

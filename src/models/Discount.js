@@ -46,8 +46,8 @@ module.exports = (sequelize, DataType) => {
        } 
     });
     Discount.associate = models => {
-        Discount.belongsTo(models.Enterprise, { as: 'Enterprise', foreignKey: 'enterpriseId' });
-        Discount.belongsTo(models.User, { as: 'User', foreignKey: 'userId' });    
+        Discount.belongsTo(models.Enterprise, { foreignKey: 'enterpriseId' });
+        Discount.belongsTo(models.User, { foreignKey: 'userId' });    
     };
     return Discount;
 }
