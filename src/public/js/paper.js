@@ -3,8 +3,11 @@ function initMap() {
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
     map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: -8.126902, lng: -79.031621 },
-        zoom: 8
+        center: {
+            lat: -8.127037,
+            lng: -79.032386
+        },
+        zoom: 15
     });
     directionsDisplay.setMap(map);
     var icons = {
