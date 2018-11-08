@@ -1,1 +1,92 @@
 <% layout('layout') %>
+<link rel="stylesheet" href="/public/CSS/bulma-carousel.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<div class="hero-body" style="align-items: flex-start;"><!--Cuerpo-->
+    <div class="container has-text-centered">
+    <div class="columns">
+        <div class="column is-6">
+            <div id="map" style="height: 620px; width: 100%;"></div>
+            <script src="/public/js/mainMap.js"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWgEjuWSwFWMyx7qmvn07feSZeQngHd4E&callback=initMap&libraries=geometry"
+            async defer></script>
+        </div>
+        <div class="column is-6">
+                <div class="column">
+                        <div class="box">
+                                <div class="columns is-gapless is-hidden-touch">
+                                        <div class="column is-3">
+                                                <figure class="image is-96x96">
+                                                        <img class="is-rounded" src="https://pbs.twimg.com/profile_images/966708606203809802/LqcC2Uno_400x400.jpg">
+                                                </figure>
+                                        </div>
+                                        <div class="column has-text-left">
+                                            <p>Puntos obtenidos:</p> Infinito
+                                            <br />
+                                            <p>Descuentos conseguidos:</p> Muchos
+                                            <br />
+                                            <p>Puntos de reciclaje donde has estado (?):</p> Pocos
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="box is-hidden-desktop">
+                                <div class="columns is-gapless">
+                                        <div class="column is-1">
+                                                <div class="level-item has-text-centered">
+                                                <figure class="image is-64x64">
+                                                        <img class="is-rounded" src="https://pbs.twimg.com/profile_images/966708606203809802/LqcC2Uno_400x400.jpg">
+                                                </figure>
+                                                </div>
+                                        </div>
+                                        <div class="column has-text-left">
+                                            <p>Puntos obtenidos:</p> Infinito
+                                            <br />
+                                            <p>Descuentos conseguidos:</p> Muchos
+                                            <br />
+                                            <p>Puntos de reciclaje donde has estado (?):</p> Pocos
+                                        </div>
+                                </div>
+                        </div>
+                </div>    
+                <div class="box">
+                    <h5 class="subtitle has-text-grey has-text-left">Descuentos a conseguir: </h5>    
+                    <div class='carousel carousel-animated carousel-animate-slide' data-autoplay="true">
+                                <div class='carousel-container'>
+                                  <div class='carousel-item has-background is-active'>
+                                    <img class="is-background" src="https://cdn.tecnogaming.com/wp-content/uploads/2017/02/PC-Gamer-13.jpg" alt="" width="600" height="300" />
+                                    <div class="title">PC GAMER (50% dscto.)</div>
+                                  </div>
+                                  <div class='carousel-item has-background'>
+                                    <img class="is-background" src="https://http2.mlstatic.com/lavadorasecadora-smart-wifi-samsung-add-wash-2213-kg-D_NQ_NP_982361-MLC26787264214_022018-F.jpg" alt="" width="600" height="300" />
+                                    <div class="title">Lavadora Smart (20% dscto.) </div>
+                                  </div>
+                                  <div class='carousel-item has-background'>
+                                    <img class="is-background" src="https://res.cloudinary.com/xceed-me/image/upload/f_auto/v1487093210/venues/cover/ama-disco-lounge.png.jpg" alt="" width="600" height="300" />
+                                    <div class="title">Pase a AMA (80% dscto.) </div>
+                                  </div>
+                                  <div class='carousel-item has-background'>
+                                    <img class="is-background" src="https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2016/03/Oculus-Rift-1-1100x551.jpg" alt="" width="600" height="300" />
+                                    <div class="title">Lentes VR (30% dscto.) </div>
+                                  </div>
+                                </div>
+                                <div class="carousel-navigation is-overlay">
+                                  <div class="carousel-nav-left">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                  </div>
+                                  <div class="carousel-nav-right">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                                  </div>
+                                </div>
+                              </div>
+                </div>
+        </div>
+    </div>
+    </div>
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/bulma-carousel@3.0.0/dist/js/bulma-carousel.min.js"></script>
+  <script>
+    $(document).ready(function(){
+           var carousels = bulmaCarousel.attach(); 
+       });
+  </script>
+  </body>
+  </html>
