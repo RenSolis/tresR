@@ -7,7 +7,7 @@ function initMap() {
             lat: -8.127037,
             lng: -79.032386
         },
-        zoom: 8
+        zoom: 15
     });
     directionsDisplay.setMap(map);
     var icons = {
