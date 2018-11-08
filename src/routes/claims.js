@@ -42,12 +42,12 @@ router.post('/', upload.single('routeImage'), (req,res)=>{
 	claim.id = null;
 	Claim.create(claim)
 		.then(result => {
-			req.flash('success', 'Your claim was sent.');
+			req.flash('success', 'Tu reclamo fue enviado.');
 			return res.redirect(303, '/claims/all');
 		})
 		.catch(err => {
 			console.log(err);
-			req.flash('danger', 'You have an error.');
+			req.flash('danger', 'Tienes un error.');
 			return res.redirect(303, '/claims');
 		});
 });
@@ -58,9 +58,26 @@ router.get('/all', async (req, res) => {
 		const answers = await Answer.findAll(); 
 		res.render('Comments', {
 			claims: claims,
-			answers: answers
+			answers: answers,
+			me: false
 		});
 	} catch(err) {
+		console.log(err);
+	}
+});
+
+router.get('/me', auth, async (req, res) => {
+	try {
+		if (req.user) {
+			const claims = await Claim.findAll({ where: { userId: req.user.id } });
+			const answers = await Answer.findAll();
+			res.render('Comments', {
+				claims: claims,
+				answers: answers,
+				me: true
+			});
+		}
+	} catch (err) {
 		console.log(err);
 	}
 });
@@ -68,7 +85,7 @@ router.get('/all', async (req, res) => {
 router.get('/:id', auth, async (req, res) => {
 	try {
 		const claim = await Claim.findById(req.params.id);
-		let answers = await Answer.findAll({ where: { claimId: claim.id } });
+		const answers = await Answer.findAll({ where: { claimId: claim.id } });
 		res.render('Claim', {
 			claim: claim,
 			answers: answers

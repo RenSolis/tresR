@@ -19,11 +19,11 @@ router.get('/signup', noAuth, (req, res) => {
 });
 
 router.post('/signup', noAuth, async (req, res) => {
-    req.checkBody('email', 'Email is required.').notEmpty();
-    req.checkBody('email', 'Email is not valid.').isEmail();
-    req.checkBody('dni', 'Dni is required.').notEmpty();
-    req.checkBody('password', 'Password is required.').notEmpty();
-    req.checkBody('password_confirmation', 'Password do not match').equals(req.body.password);
+    req.checkBody('email', 'Email es requerido.').notEmpty();
+    req.checkBody('email', 'Email no es valido.').isEmail();
+    req.checkBody('dni', 'Dni es requerido.').notEmpty();
+    req.checkBody('password', 'Contraseña es requerido.').notEmpty();
+    req.checkBody('password_confirmation', 'Las contraseñas no coinciden.').equals(req.body.password);
     const errors = req.validationErrors();
     if (errors) {
         res.locals.errors = errors;
@@ -31,12 +31,12 @@ router.post('/signup', noAuth, async (req, res) => {
     };
     let user = await User.findOne({ where: { email: req.body.email } });
     if (user) {
-        req.flash('information', 'That email is already taken.');
+        req.flash('information', 'El correo ya es utilizado.');
         return res.redirect(303, '/users/signup');
     } 
     user = await User.findOne({ where: { dni: req.body.dni } });
     if (user) {
-        req.flash('information', 'That DNI is already taken.');
+        req.flash('information', 'El DNI ya es utilizado.');
         return res.redirect(303, '/users/signup');
     }
     user = req.body;
@@ -47,12 +47,12 @@ router.post('/signup', noAuth, async (req, res) => {
         user.password = hash;
         User.create(user)
             .then(result => {
-                req.flash('success', 'Please login.');
+                req.flash('success', 'Tu usuario fue creado. Inicia sesión.');
                 return res.redirect(303, '/users/login');
             })
             .catch(err => {
                 console.log(err.message);
-                req.flash('danger', 'You have an error.');
+                req.flash('danger', 'Tienes un error.');
                 return res.redirect(303, '/users/signup');
             });
     } catch (err) {
@@ -68,13 +68,13 @@ router.post("/login", noAuth, (req, res, next) => {
   passport.authenticate("local-login", {
     successRedirect: "/",
     failureRedirect: "/users/login",
-    failureFlash: { message: 'Incorrect email/password.' }
+    failureFlash: { message: 'Correo o contraseña incorrecto.' }
   })(req, res, next);
 });
 
 router.get('/logout', auth, (req, res) => {
     req.logout();
-    req.flash('success', 'You are logged out.');
+    req.flash('success', 'Cerraste sesión');
     res.redirect(303, '/users/login');
 });
 

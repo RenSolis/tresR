@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>SWPECYMDTDDRYPDRELCDT</title>
+		<title>Tres R</title>
 		<link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
 		<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
@@ -45,9 +45,10 @@
                         <a class="navbar-item" href="/map">Mapa</a><!--Pestaña actual, por así decirlo-->
                         <% if (user) { %>
                             <a class="navbar-item" href="/users/me"><%= user.name %></a>
+                            <a class="navbar-item " href="/claims/me">Mis Reclamos</a>
                         <% } %>
                         <a class="navbar-item " href="/materials">Reciclaje</a>
-                        <a class="navbar-item " href="/claims">Reclamos</a>
+                        <a class="navbar-item " href="/claims/all">Reclamos</a>
                         <% if (!user) { %>
                             <a class="navbar-item " href="/users/login">Iniciar sesion</a>
                         <% } else { %>
@@ -61,9 +62,10 @@
                             <a class="navbar-item button is-dark has-text-left" href="/map">Mapa</a><!--Pestaña actual, por así decirlo-->
                             <% if (user) { %>
                                 <a class="navbar-item button is-dark has-text-left" href="/users/me"><%= user.name %></a>
+                                <a class="navbar-item button is-dark has-text-left" href="/claims/me">Mis Reclamos</a>
                             <% } %>
                             <a class="navbar-item button is-dark has-text-left" href="/materials">Reciclaje</a>
-                            <a class="navbar-item button is-dark has-text-left" href="/claims">Reclamos</a>
+                            <a class="navbar-item button is-dark has-text-left" href="/claims/all">Reclamos</a>
                             <% if (!user) { %>
                                 <a class="navbar-item button is-dark has-text-left" href="/login">Iniciar sesion</a>
                             <% } else { %>
@@ -77,7 +79,7 @@
   <!-- Section flash messages -->
     <%- messages('message_template', locals) -%>
     <% if( errors ) { %>
-        <p class="text-danger">Please fix the following errors.</p>
+        <p class="text-danger">Por favor solucionar los siguientes errores.</p>
         <ul>
             <% errors.forEach( function( error ) { %>
                 <li class="text-danger">

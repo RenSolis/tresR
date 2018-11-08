@@ -7,16 +7,16 @@ module.exports = passport => {
     passport.use('local-login', new LocalStrategy({ usernameField: 'email', passwordField: 'password' }, (email, password, done) => {
         User.findOne({ where: { email: email } })
             .then(user => {
-                if (!user) return done(null, false, { message: 'Incorrect email.' });
+                if (!user) return done(null, false, { message: 'Email incorrecto.' });
                 bcrypt.compare(password, user.password, (err, isMatch) => {
                     if (err) return done(err);
-                    if (!isMatch) return done(null, false, { message: 'Incorrect password.' });
+                    if (!isMatch) return done(null, false, { message: 'Contraseña incorrecta.' });
                     const userInfo =  user.get();
                     return done(null, userInfo);
                 });
             }).catch(err =>  {
                 console.log(err);
-                return done(null, false, { message: 'Something went wrong with your signup' });
+                return done(null, false, { message: 'Algo ocurrió en tu inicio de sesión' });
             });
         }
     ));

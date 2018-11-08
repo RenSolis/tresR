@@ -42,10 +42,13 @@
 					</article>
 				<% } %>
 			<% } %>
-			<a href="/claims/<%= claim.id %>">Responder Reclamo</a>
 			</div>
 		</article>
 	<% } %>
 	  </div>
+	  <% if(me) { %>
+		<a class="button is-primary is-inverted" href="/claims/all">Ver todos los reclamos</a>
+	  <% } %>
+		<a class="button is-info is-inverted" href="/claims">Realizar un reclamo</a>
 	  </div>
 </div>
